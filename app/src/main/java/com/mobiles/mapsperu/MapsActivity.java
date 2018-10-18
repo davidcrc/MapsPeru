@@ -39,11 +39,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng aqp = new LatLng(-16.404295958388573, -71.52741027927517);
+        // Add a marker in Sydney and move the camera - Latitud, longitud
+        LatLng aqp = new LatLng(-16.39871566652775, -71.53667298251604);
         mMap.addMarker(new MarkerOptions().position(aqp).title("Arequipa - Peru").snippet("Cruce ndependencia con paucarpata").icon(BitmapDescriptorFactory.fromResource(R.drawable.arequipa)));
 
-        // Posicionar la camara
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(aqp));
+        // Posicionar la camara , con un zoom
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(aqp));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aqp, 14));
     }
 }
