@@ -42,7 +42,8 @@
             android:textColor="@android:color/background_light" />
 
         <Button
-            android:id="@+id/btn_Mapas"
+            android:id="@+id/btn_Tipos"
+            android:onClick="MapaSitios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"

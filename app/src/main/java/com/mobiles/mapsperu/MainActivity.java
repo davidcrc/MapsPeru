@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnTipos, btnUbicacion, btnSitios;
+    Button btnSitios, btnTipos,btnUbicacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Boton para cargar el activity de tipos de mapas
+        btnTipos = findViewById(R.id.btn_Tipos);
+
+    }
+
+    public void  MapaSitios(View view){
+        Intent intent = new Intent(getApplicationContext(), MapsActivityTipos.class);
+
+        startActivity(intent);
     }
 }
