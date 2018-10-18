@@ -31,10 +31,20 @@ public class MainActivity extends AppCompatActivity {
         // Boton para cargar el activity de tipos de mapas
         btnTipos = findViewById(R.id.btn_Tipos);
 
+        // Boton para cargar el activity de tipos de mapas
+        btnUbicacion = findViewById(R.id.btn_Ubicacion);
+
     }
 
     public void  MapaSitios(View view){
         Intent intent = new Intent(getApplicationContext(), MapsActivityTipos.class);
+
+        startActivity(intent);
+    }
+
+    public void MiLocalizacion(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), MapsActivityLocalizacion.class);
 
         startActivity(intent);
     }
