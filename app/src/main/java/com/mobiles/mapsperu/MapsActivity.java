@@ -2,6 +2,7 @@ package com.mobiles.mapsperu;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,13 +15,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Locale;
+
 //public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+//public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerDragListener,OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
 
     // Crear un marcador desde cero
-    private Marker markerPrueba;
+    private Marker markerPrueba,markerPruebaDrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +58,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(parqueSelva).draggable(true).title("Arequipa - Peru").snippet("Parque selva alegre").icon(BitmapDescriptorFactory.fromResource(R.drawable.peru)));
 
         //Marcador de prueba
+
         LatLng prueba = new LatLng(-16.40487652036424,-71.52662374006134);
         markerPrueba = googleMap.addMarker(new MarkerOptions()
                 .position(prueba)
-                .draggable(true)        // para arrastrar el marcador
                 .title("Prueba")
         );
+
+        //Marcador de prueba
+        LatLng prueba2 = new LatLng(-16.406287680784075,-71.52470863139479);
+        markerPruebaDrag = googleMap.addMarker(new MarkerOptions()
+                .position(prueba2)
+                .title("Prueba Drag")
+                .snippet("Escuela de computación")
+                .draggable(true)        // para arrastrar el marcador
+        );
+
 
         // Posicionar la camara , con un zoom
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(aqp));
@@ -67,6 +81,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Habilitar para escuchar eventos de los marcadores
         googleMap.setOnMarkerClickListener(this);
+
+        // Habilitar para escuchar el arrastre del marcador
+        googleMap.setOnMarkerDragListener(this);
     }
 
     @Override
@@ -81,5 +98,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, lat+", "+lng, Toast.LENGTH_SHORT).show();
         }
         return false;
+    }
+
+
+    //////////////////////////////////////////// On marker drag method's
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+        if(marker.equals(markerPruebaDrag)){
+            Toast.makeText(this, "Start", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+        if(marker.equals(markerPruebaDrag)){
+            String newTitle = String.format(Locale.getDefault(),
+                    getString(R.string.marker_detail_latlng),
+                    marker.getPosition().latitude,
+                    marker.getPosition().longitude );
+
+            setTitle(newTitle);
+
+        }
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        if(marker.equals(markerPruebaDrag)){
+            Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
+            setTitle(R.string.sitios);
+        }
     }
 }
