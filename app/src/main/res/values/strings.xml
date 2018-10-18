@@ -3,4 +3,5 @@
     <string name="sitios">Sitios turisticos</string>
     <string name="title_activity_maps">Map</string>
     <string name="marker_detail_latlng">(%1$.3f, %2$.3f)</string>
+    <string name="UnsaInfo"> Universidad nacional de san Agustin de Arequipa </string>
 </resources>

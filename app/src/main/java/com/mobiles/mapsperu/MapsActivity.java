@@ -19,7 +19,8 @@ import java.util.Locale;
 
 //public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 //public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerDragListener,OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+//public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarkerDragListener,OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends AppCompatActivity implements GoogleMap.OnInfoWindowClickListener,GoogleMap.OnMarkerDragListener,OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
 
@@ -62,7 +63,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
         LatLng prueba = new LatLng(-16.40487652036424,-71.52662374006134);
         markerPrueba = googleMap.addMarker(new MarkerOptions()
                 .position(prueba)
-                .title("Prueba")
+                .title("UNSA")
         );
 
         //Marcador de prueba
@@ -84,6 +85,9 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
 
         // Habilitar para escuchar el arrastre del marcador
         googleMap.setOnMarkerDragListener(this);
+
+        //Habilitar la ventana de informacion
+        googleMap.setOnInfoWindowClickListener(this);
     }
 
     @Override
@@ -128,5 +132,18 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMarke
             Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
             setTitle(R.string.sitios);
         }
+    }
+
+    ////////////////// Mostrar una ventana de informacion extra
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        if(marker.equals(markerPrueba)){
+            UnsaFragment.newInstance(marker.getTitle(),
+                    getString(R.string.UnsaInfo))
+                    .show(getSupportFragmentManager(), null);
+
+
+        }
+
     }
 }
