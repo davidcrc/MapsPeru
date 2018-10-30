@@ -146,8 +146,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnInfoW
     @Override
     public void onInfoWindowClick(Marker marker) {
         if(marker.equals(markerPrueba)){
-            UnsaFragment.newInstance(marker.getTitle(),
-                    getString(R.string.UnsaInfo))
+            UnsaFragment.newInstance(marker.getTitle(),"Universidad nacional de san Agustin de Arequipa" )
                     .show(getSupportFragmentManager(), null);
 
 
