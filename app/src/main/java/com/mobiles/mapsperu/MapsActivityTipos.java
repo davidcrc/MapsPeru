@@ -22,7 +22,7 @@ public class MapsActivityTipos extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_tipos);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Obtener SupportMapFragment y reciba una notificación cuando el mapa esté listo para ser utilizado.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -33,13 +33,11 @@ public class MapsActivityTipos extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng aqp = new LatLng(-16.39871566652775, -71.53667298251604);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aqp, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aqp, 15));//[latitud, longitud, zoom]
 
-        //////////// HBILITAR MAS CONTROLES POR DEFECTO [zoom,]
         UiSettings uiSettings = googleMap.getUiSettings();
-        uiSettings.setCompassEnabled(true);
-        uiSettings.setZoomControlsEnabled(true);
-        //uiSettings.setMyLocationButtonEnabled(false);
+        uiSettings.setCompassEnabled(true); //brújula
+        uiSettings.setZoomControlsEnabled(true); //zoom
     }
 
     public void CambiarHibrido(View view) { mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID); }
