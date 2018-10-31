@@ -42,15 +42,9 @@ public class MapsActivityTipos extends FragmentActivity implements OnMapReadyCal
 
     public void CambiarHibrido(View view) { mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID); }
 
-    public void CambiarSatelital(View view) {
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-    }
+    public void CambiarSatelital(View view) { mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE); }
 
-    public void CambiarTerreno(View view) {
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-    }
+    public void CambiarTerreno(View view) { mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN); }
 
-    public void CambiarNormal(View view) {
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-    }
+    public void CambiarNormal(View view) { mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL); }
 }

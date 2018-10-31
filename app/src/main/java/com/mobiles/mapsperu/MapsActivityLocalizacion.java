@@ -17,6 +17,7 @@ import com.google.android.gms.maps.UiSettings;
 
 public class MapsActivityLocalizacion extends FragmentActivity implements GoogleMap.OnMyLocationButtonClickListener,GoogleMap.OnMyLocationClickListener,OnMapReadyCallback {
     private static final int MY_LOCATION_REQUEST_CODE = 1;
+
     private GoogleMap mMap;
 
     @Override
@@ -32,12 +33,6 @@ public class MapsActivityLocalizacion extends FragmentActivity implements Google
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        UiSettings uiSettings = googleMap.getUiSettings();
-        //habilitar controles
-        uiSettings.setCompassEnabled(true);//brújula
-        uiSettings.setZoomControlsEnabled(true); //zoom
-        uiSettings.setMyLocationButtonEnabled(true);//botón de ubicación
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
@@ -58,8 +53,9 @@ public class MapsActivityLocalizacion extends FragmentActivity implements Google
     }
 
     @Override
-    public boolean onMyLocationButtonClick() {// falso = por defecto: la cámara anima a la posición actual del usuario
+    public boolean onMyLocationButtonClick() {
         Toast.makeText(this, "MyLocation clicked", Toast.LENGTH_SHORT).show();
+        //falso = por defecto: la cámara anima a la posición actual del usuario
         return false;
     }
 
